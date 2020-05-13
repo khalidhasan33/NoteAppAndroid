@@ -27,7 +27,7 @@ public class Note_Fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_note, container,false);
         // Replace 'android.R.id.list' with the 'id' of your RecyclerView
         // find your RecyclerView
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.word_rv);
 
         final WordListAdapter adapter = new WordListAdapter(getActivity());
         recyclerView.setAdapter(adapter);
