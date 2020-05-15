@@ -4,28 +4,41 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordViewHolder> {
-
+    Context mContext;
     class WordViewHolder extends RecyclerView.ViewHolder {
         private final TextView wordItemView;
+        private final TextView wordTitleView;
+        private final TextView wordDueView;
+        RelativeLayout container;
 
         private WordViewHolder(View itemView) {
             super(itemView);
+            container = itemView.findViewById(R.id.container);
             wordItemView = itemView.findViewById(R.id.tv_description);
+            wordTitleView = itemView.findViewById(R.id.tv_title);
+            wordDueView = itemView.findViewById(R.id.tv_date);
         }
     }
 
     private final LayoutInflater mInflater;
     private List<Word> mWords; // Cached copy of words
 
-    WordListAdapter(Context context) { mInflater = LayoutInflater.from(context); }
+    WordListAdapter(Context context) {
+        mInflater = LayoutInflater.from(context);
+        mContext = context;
+    }
 
     @Override
     public WordViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -37,7 +50,12 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
     public void onBindViewHolder(WordViewHolder holder, int position) {
         if (mWords != null) {
             Word current = mWords.get(position);
-            holder.wordItemView.setText(current.getWord());
+            //holder.container.setAnimation(AnimationUtils.loadAnimation(mContext,R.anim.fade_transition));
+            holder.container.setAnimation(AnimationUtils.loadAnimation(mContext,R.anim.fade_scale));
+            //holder.wordItemView.setAnimation(AnimationUtils.loadAnimation(mContext,R.anim.fade_transition));
+            holder.wordItemView.setText(current.getDesc());
+            holder.wordTitleView.setText(current.getTitle());
+            holder.wordDueView.setText(new SimpleDateFormat("MM/dd/yy").format(current.getDueTimestamp()));
         } else {
             // Covers the case of data not being ready yet.
             holder.wordItemView.setText("No Word");

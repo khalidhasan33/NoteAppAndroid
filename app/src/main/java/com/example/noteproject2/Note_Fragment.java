@@ -56,8 +56,11 @@ public class Note_Fragment extends Fragment {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        Word word = new Word(data.getStringExtra(WordNewActivity.EXTRA_REPLY));
-        mWordViewModel.insert(word);
+        if(requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE){
+            if(resultCode == getActivity().RESULT_OK){
+               Word mWord = (Word) data.getSerializableExtra("newWord");
+                mWordViewModel.insert(mWord);
+            }
+        }
     }
 }

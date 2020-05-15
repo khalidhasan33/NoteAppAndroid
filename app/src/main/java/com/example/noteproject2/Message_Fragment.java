@@ -22,32 +22,7 @@ public class Message_Fragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
-        //View view = inflater.inflate(R.layout.fragment_message, container,false);
-        View view = inflater.inflate(R.layout.fragment_note, container,false);
-
-        //WordRecyclerview = view.findViewById(R.id.word_rv);
-        //mData = new ArrayList<>();
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.word_rv);
-        List<Word2> mData = new ArrayList<>();
-
-        mData.add(new Word2("test","test,","6 july 1995",R.drawable.userphoto));
-        mData.add(new Word2("test2","test,","6 july 1995",R.drawable.userphoto));
-        mData.add(new Word2("test2","test,","6 july 1995",R.drawable.userphoto));
-        mData.add(new Word2("test2","test,","6 july 1995",R.drawable.userphoto));
-        mData.add(new Word2("test3","test,","6 july 1995",R.drawable.userphoto));
-        mData.add(new Word2("test3","test,","6 july 1995",R.drawable.userphoto));
-        mData.add(new Word2("test3","test,","6 july 1995",R.drawable.userphoto));
-        mData.add(new Word2("test4","test,","6 july 1995",R.drawable.userphoto));
-        mData.add(new Word2("test5","test,","6 july 1995",R.drawable.userphoto));
-        mData.add(new Word2("test6","test,","6 july 1995",R.drawable.userphoto));
-
-
-        WordListAdapter2 adapter = new WordListAdapter2(getActivity());
-        recyclerView.setAdapter(adapter);
-
-        //Attach a Layout Manager to it
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getBaseContext()));
-
+        View view = inflater.inflate(R.layout.fragment_message, container,false);
 
         return view;
     }

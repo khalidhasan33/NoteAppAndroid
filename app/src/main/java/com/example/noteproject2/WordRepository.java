@@ -25,4 +25,10 @@ public class WordRepository {
             mWordDao.insert(word);
         });
     }
+
+    void update(Word word) {
+        WordRoomDatabase.databaseWriteExecutor.execute(() -> {
+            mWordDao.update(word);
+        });
+    }
 }
